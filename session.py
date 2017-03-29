@@ -30,15 +30,15 @@ class Session(object):
                 # ------------------------- Issues --------------------------
     def get_issue(self):
         get_issue_url = self.API_URL + '/api/v1/issues?' + 'token='+self.token + '&auth_token='+self.auth_token,
-        response = self._req('GET', get_issue_url)
+        return self._req('GET', get_issue_url)
 
     def get_issue_by_id(self, issue_id):
         get_issue_url = self.API_URL + '/api/v1/issues/'+ issue_id + '?token=' + self.token + '&auth_token=' + self.auth_token,
-        response = self._req('GET', get_issue_url)
+        return self._req('GET', get_issue_url)
 
     def get_issue_by_id_in_project(self, issue_id):
         get_issue_url = self.API_URL + '/api/v1/issues/pid' + issue_id + '?token=' + self.token + '&auth_token=' + self.auth_token,
-        response = self._req('GET', get_issue_url)
+        return self._req('GET', get_issue_url)
 
     def create_issue(self, summary, **kwargs):
         create_issue_url = self.API_URL + '/api/v1/projects/issues/create'
@@ -49,7 +49,29 @@ class Session(object):
         }
         required.update(kwargs)
         data = json.dumps(required)
-        response = self._req('POST', create_issue_url, data)
+        return self._req('POST', create_issue_url, data)
+
+    def update_issue_by_id(self,issue_id, summary, **kwargs):
+        update_issue_url = self.API_URL + '/api/v1/issues/'+ str(issue_id)
+        required = {
+            "token": self.token,
+            "auth_token": self.auth_token,
+            "summary": summary
+        }
+        required.update(kwargs)
+        data = json.dumps(required)
+        return self._req('PUT', update_issue_url, data)
+
+    def update_issue_by_id_in_project(self,issue_id, summary, **kwargs):
+        update_issue_url = self.API_URL + '/api/v1/issues/pid'+ str(issue_id)
+        required = {
+            "token": self.token,
+            "auth_token": self.auth_token,
+            "summary": summary
+        }
+        required.update(kwargs)
+        data = json.dumps(required)
+        return self._req('PUT', update_issue_url, data)
 
     def delete_issue_by_id(self, issue_id):
         delete_issue_url = self.API_URL + '/api/v1/issues/'+ str(issue_id)
@@ -57,7 +79,7 @@ class Session(object):
             "token": self.token,
             "auth_token": self.auth_token
         })
-        response = self._req('DELETE', delete_issue_url, data)
+        return self._req('DELETE', delete_issue_url, data)
 
     def delete_issue_by_id_in_project(self, issue_id):
         delete_issue_url = self.API_URL + '/api/v1/issues/pid' + str(issue_id)
@@ -65,14 +87,13 @@ class Session(object):
                 "token": self.token,
                 "auth_token": self.auth_token
             })
-        response = self._req('DELETE', delete_issue_url, data)
+        return self._req('DELETE', delete_issue_url, data)
 
     def _req(self, method, url, data=None):
         if method == 'POST' or method == 'PUT' or method == 'DELETE':
-            response = self.s.request(method=method, url=url, data=data, headers=self.headers)
-            return response
+            return self.s.request(method=method, url=url, data=data, headers=self.headers)
 
-        response = self.s.request(method=method, url=url)
+        return self.s.request(method=method, url=url)
 
 
                  # ------------------------- Organization --------------------------
