@@ -101,6 +101,10 @@ class Session(object):
         get_organizations_url = self.API_URL + '/api/v1/organizations' + '?auth_token=' + self.auth_token
         return self._req('GET', get_organizations_url)
 
+    def show_organization(self, id):
+        show_organizations_url = self.API_URL + '/api/v1/organizations/' + id + '?auth_token=' + self.auth_token
+        return self._req('GET', show_organizations_url)
+
     def create_organization(self, title, description=None):
         create_organization_url = self.API_URL + '/api/v1/organizations/'
         data = json.dumps({
@@ -111,6 +115,24 @@ class Session(object):
             "auth_token": self.auth_token
         })
         return self._req('POST', create_organization_url, data)
+
+    def update_organization(self, id, title=None, description=None):
+        create_organization_url = self.API_URL + '/api/v1/organizations/' + id
+        data = json.dumps({
+            "organization": {
+                "title": title,
+                "description": description
+            },
+            "auth_token": self.auth_token
+        })
+        return self._req('PUT', create_organization_url, data)
+
+    def delete_organization(self, id):
+        delete_organization_url = self.API_URL + '/api/v1/organizations/' + id
+        data = json.dumps({
+            "auth_token": self.auth_token
+        })
+        return self._req('DELETE', delete_organization_url, data)
 
 
 
