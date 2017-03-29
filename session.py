@@ -13,9 +13,9 @@ class Session(object):
         self.login = login
         self.password = password
         self.s = requests.Session()
-        self.sign_in()
+        self._sign_in()
 
-    def sign_in(self):
+    def _sign_in(self):
         sign_in_url = self.API_URL + '/api/v1/sign_in'
         userdata = json.dumps({
                                 "user": {
@@ -28,6 +28,17 @@ class Session(object):
         self.auth_token = response['auth_token']
 
                 # ------------------------- Issues --------------------------
+    def get_issue(self):
+        get_issue_url = self.API_URL + '/api/v1/issues?' + 'token='+self.token + '&auth_token='+self.auth_token,
+        response = self._req('GET', get_issue_url)
+
+    def get_issue_by_id(self, issue_id):
+        get_issue_url = self.API_URL + '/api/v1/issues/'+ issue_id + '?token=' + self.token + '&auth_token=' + self.auth_token,
+        response = self._req('GET', get_issue_url)
+
+    def get_issue_by_id_in_project(self, issue_id):
+        get_issue_url = self.API_URL + '/api/v1/issues/pid' + issue_id + '?token=' + self.token + '&auth_token=' + self.auth_token,
+        response = self._req('GET', get_issue_url)
 
     def create_issue(self, summary, **kwargs):
         create_issue_url = self.API_URL + '/api/v1/projects/issues/create'
@@ -56,10 +67,12 @@ class Session(object):
             })
         response = self._req('DELETE', delete_issue_url, data)
 
-    def _req(self, method, url, data):
+    def _req(self, method, url, data=None):
         if method == 'POST' or method == 'PUT' or method == 'DELETE':
             response = self.s.request(method=method, url=url, data=data, headers=self.headers)
             return response
+
+        response = self.s.request(method=method, url=url)
 
 
                  # ------------------------- Organization --------------------------
