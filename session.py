@@ -137,3 +137,38 @@ class Session(object):
 
 
                 # ------------------------- Projects --------------------------
+    def get_projects(self):
+        get_projects_url = self.API_URL + '/api/v1/projects' + '?auth_token=' + self.auth_token
+        return self._req('GET', get_projects_url)
+
+    def show_project(self, id):
+        show_project_url = self.API_URL + '/api/v1/projects/' + id + '?auth_token=' + self.auth_token
+        return self._req('GET', show_project_url)
+
+    def create_project(self, org_id, title):
+        create_project_url = self.API_URL + '/api/v1/projects/'
+        data = json.dumps({
+            "organization_id": org_id,
+            "project":{
+                "title": title
+            },
+            "auth_token": self.auth_token
+        })
+        return self._req('POST', create_project_url, data)
+
+    def update_project(self, id, title=None):
+        update_project_url = self.API_URL + '/api/v1/projects/' + id
+        data = json.dumps({
+            "project":{
+                "title": title
+            },
+            "auth_token": self.auth_token
+        })
+        return self._req('PUT', update_project_url, data)
+
+    def delete_project(self, id):
+        delete_project_url = self.API_URL + '/api/v1/projects/' + id
+        data = json.dumps({
+            "auth_token": self.auth_token
+        })
+        return self._req('DELETE', delete_project_url, data)
