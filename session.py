@@ -97,6 +97,20 @@ class Session(object):
 
 
                  # ------------------------- Organization --------------------------
+    def get_organizations(self):
+        get_organizations_url = self.API_URL + '/api/v1/organizations' + '?auth_token=' + self.auth_token
+        return self._req('GET', get_organizations_url)
+
+    def create_organization(self, title, description=None):
+        create_organization_url = self.API_URL + '/api/v1/organizations/'
+        data = json.dumps({
+            "organization":{
+                "title": title,
+                "description": description
+            },
+            "auth_token": self.auth_token
+        })
+        return self._req('POST', create_organization_url, data)
 
 
 
