@@ -29,15 +29,15 @@ class Session(object):
 
                 # ------------------------- Issues --------------------------
     def get_issue(self):
-        get_issue_url = self.API_URL + '/api/v1/issues?' + 'token='+self.token + '&auth_token='+self.auth_token,
+        get_issue_url = self.API_URL + '/api/v1/issues?' + 'token='+self.token + '&auth_token='+self.auth_token
         return self._req('GET', get_issue_url)
 
     def get_issue_by_id(self, issue_id):
-        get_issue_url = self.API_URL + '/api/v1/issues/'+ issue_id + '?token=' + self.token + '&auth_token=' + self.auth_token,
+        get_issue_url = self.API_URL + '/api/v1/issues/'+ str(issue_id) + '?token=' + self.token + '&auth_token=' + self.auth_token
         return self._req('GET', get_issue_url)
 
     def get_issue_by_id_in_project(self, issue_id):
-        get_issue_url = self.API_URL + '/api/v1/issues/pid' + issue_id + '?token=' + self.token + '&auth_token=' + self.auth_token,
+        get_issue_url = self.API_URL + '/api/v1/issues/pid' + str(issue_id) + '?token=' + self.token + '&auth_token=' + self.auth_token
         return self._req('GET', get_issue_url)
 
     def create_issue(self, summary, **kwargs):
