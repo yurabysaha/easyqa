@@ -1,5 +1,5 @@
 # EasyQA Python 2 Client Library
-[[ https://geteasyqa.com/wp-content/themes/easyqa_web/public/img/icons/ic_logo.svg | height = 40px ]]
+
 This document describes Python 2 library that wraps EasyQA REST API.
 
 # Installation
