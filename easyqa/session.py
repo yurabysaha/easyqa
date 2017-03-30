@@ -28,7 +28,7 @@ class Session(object):
         self.auth_token = response['auth_token']
 
                 # ------------------------- Issues --------------------------
-    def get_issue(self):
+    def get_issues(self):
         get_issue_url = self.API_URL + '/api/v1/issues?' + 'token='+self.token + '&auth_token='+self.auth_token
         return self._req('GET', get_issue_url)
 
@@ -51,7 +51,7 @@ class Session(object):
         data = json.dumps(required)
         return self._req('POST', create_issue_url, data)
 
-    def update_issue_by_id(self,issue_id, summary, **kwargs):
+    def update_issue_by_id(self, issue_id, summary, **kwargs):
         update_issue_url = self.API_URL + '/api/v1/issues/'+ str(issue_id)
         required = {
             "token": self.token,
