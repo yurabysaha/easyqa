@@ -233,3 +233,50 @@ class Session(object):
             "auth_token": self.auth_token
         })
         return self._req('DELETE', delete_role_url, data)
+
+        # ------------------------- Statuses --------------------------
+
+    def get_statuses(self):
+        get_statuses_url = self.API_URL + "/api/v1/statuses?" + self.token + "&auth_token=" + self.auth_token
+        return self._req('GET', get_statuses_url)
+
+    def show_statuses(self, id):
+        show_statuses_url = self.API_URL + "/api/v1/statuses/" + str(
+            id) + "?token=" + self.token + "&auth_token=" + self.auth_token
+        return self._req('GET', show_statuses_url)
+
+    def create_status(self, name):
+        create_status_url = self.API_URL + '/api/v1/statuses'
+        data = json.dumps(
+            {
+                "token": self.token,
+                "status_object": {
+                    "name": name
+                },
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('POST', create_status_url, data)
+
+    def update_status(self, id, name):
+        update_status_url = self.API_URL + '/api/v1/statuses/' + str(id)
+        data = json.dumps(
+            {
+                "token": self.token,
+                "status_object": {
+                    "name": name
+                },
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('PUT', update_status_url, data)
+
+    def delete_status(self, id):
+        delete_status_url = self.API_URL + '/api/v1/statuses/' + str(id)
+        data = json.dumps(
+            {
+                "token": self.token,
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('DELETE', delete_status_url, data)
