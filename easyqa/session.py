@@ -215,7 +215,7 @@ class Session(object):
         )
         return self._req('POST', create_project_role_url, data)
 
-    def update_project_role(self, id, user_id, role='tester'):
+    def update_project_role(self, id, role='tester'):
         # Role in project. Must be "developer", "tester", "viewer" or "project_manager"
         update_project_role_url = self.API_URL + '/api/v1/roles/' + str(id)
         data = json.dumps(
