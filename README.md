@@ -1,17 +1,24 @@
 # EasyQA Python 2 Client Library
 
-This document describes Python 2 library that wraps EasyQA REST API.
+This document describes Python 2 library that wraps [EasyQA](https://geteasyqa.com) REST API.
 
 # Installation
 ```sh
 $ pip install easyqa
 ```
 ### Authenticating
+###### fields
+[required]
+> - email - Your email
+> - password - Your password
+> - project_token - Your project token. [How find project token](https://geteasyqa.com/sdk/android)
+
 ```python
 from easyqa.session import Session
 easyqa = Session('email', 'password', 'project_token')
 ```
 # Methods
+
 ### Issues
 #### Get issue
 ##### Get issues from project
@@ -22,7 +29,7 @@ easyqa.get_issues()
 ##### Get issue by id
 ###### fields
 [required]
-- issue_id - Issue ID
+> - issue_id - Issue ID
 
 ```python
 # get one issue by id
@@ -35,17 +42,17 @@ easyqa.get_issue_by_id_in_project(issue_id)
 #### Create issue
 ###### fields
 [required]
-- summary - Issue summary
+> - summary - Issue summary
 
 [optional]
-- test_object_id - ID test object on site
-- description - Issue description
-- issue_type - Type of issue
-- priority - Issue priority
-- severity - Issue severity
-- assigner_id - Issue assigner ID
-- test.jpg - Name your upload image. Data type must be "jpg"
-- test.mp4 - Name your upload video. Data type must be "mp4"
+> - test_object_id - ID test object on site
+> - description - Issue description
+> - issue_type - Type of issue
+> - priority - Issue priority
+> - severity - Issue severity
+> - assigner_id - Issue assigner ID
+> - test.jpg - Name your upload image. Data type must be "jpg"
+> - test.mp4 - Name your upload video. Data type must be "mp4"
 
 ```python
 # create one issue
@@ -60,19 +67,19 @@ easyqa.create_issue(summary='Test', description='test description')
 #### Update issue
 ###### fields
 [required]
-- issue_id - Issue ID
-- summary - Issue summary
+> - issue_id - Issue ID
+> - summary - Issue summary
 
 [optional]
-- test_object_id - ID test object on site
-- description - Issue description
-- issue_type - Type of issue
-- priority - Issue priority
-- severity - Issue severity
-- assigner_id - Issue assigner ID
-- status_id - Status ID
-- test.jpg - Name your upload image. Data type must be "jpg"
-- test.mp4 - Name your upload video. Data type must be "mp4"
+> - test_object_id - ID test object on site
+> - description - Issue description
+> - issue_type - Type of issue
+> - priority - Issue priority
+> - severity - Issue severity
+> - assigner_id - Issue assigner ID
+> - status_id - Status ID
+> - test.jpg - Name your upload image. Data type must be "jpg"
+> - test.mp4 - Name your upload video. Data type must be "mp4"
 
 ```python
 # Update issue by id
@@ -91,7 +98,7 @@ easyqa.update_issue_by_id_in_project(issue_id=2, summary='Test', description='te
 #### Delete issue
 ###### fields
 [required]
-- issue_id - Issue ID
+> - issue_id - Issue ID
 
 ###### examples
 ```python
@@ -113,7 +120,7 @@ easyqa.get_organizations()
 ##### Get organization by id
 ###### fields
 [required]
-- id - Organization ID
+> - id - Organization ID
 
 ###### examples
 ```python
@@ -124,10 +131,10 @@ easyqa.show_organization(id)
 #### Create organization
 ###### fields
 [required]
-- title - Organization title
+> - title - Organization title
 
 [optional]
-- description - Organization description
+> - description - Organization description
 
 ###### examples
 ```python
@@ -141,11 +148,11 @@ easyqa.create_issue(title='Test', description='test description')
 #### Update organization
 ###### fields
 [required]
-- id - Organization id
+> - id - Organization id
 
 [optional]
-- title - Organization title
-- description - Organization description
+> - title - Organization title
+> - description - Organization description
 
 ###### examples
 ```python
@@ -156,7 +163,7 @@ easyqa.update_organization(id=1, title='Test', description='test description')
 #### Delete organization
 ###### fields
 [required]
-- id - Organization id
+> - id - Organization id
 
 ###### examples
 ```python
@@ -174,7 +181,7 @@ easyqa.get_projects()
 ##### Get project by id
 ###### fields
 [required]
-- id - Projects ID
+> - id - Projects ID
 
 ###### examples
 ```python
@@ -185,8 +192,8 @@ easyqa.show_project(id)
 #### Create project
 ###### fields
 [required]
-- org_id - Organization id
-- title - Project title
+> - org_id - Organization id
+> - title - Project title
 
 ###### examples
 ```python
@@ -197,10 +204,10 @@ easyqa.create_project(org_id=1, title='Test')
 #### Update project
 ###### fields
 [required]
-- org_id - Organization id
+> - org_id - Organization id
 
 [optional]
-- title - Project title
+> - title - Project title
 
 ###### examples
 ```python
@@ -211,7 +218,7 @@ easyqa.update_project(org_id=1, title='updated project')
 #### Delete project
 ###### fields
 [required]
-- id - Project id
+> - id - Project id
 
 ###### examples
 ```python
@@ -223,7 +230,7 @@ easyqa.delete_project(id=2)
 #### Get Roles
 ###### fields
 [required]
-- organization_id - Organization id
+> - organization_id - Organization id
 
 ###### examples
 ```python
@@ -234,7 +241,7 @@ easyqa.get_roles(organization_id=1)
 ##### Get role by id
 ###### fields
 [required]
-- id - Role ID
+> - id - Role ID
 
 ###### examples
 ```python
@@ -245,9 +252,9 @@ easyqa.show_role(id=1)
 ##### Create organization role
 ###### fields
 [required]
-- organization_id - Organization id
-- user_id - User id
-- role - Role (available: 'user', 'admin')
+> - organization_id - Organization id
+> - user_id - User id
+> - role - Role (available: 'user', 'admin')
 
 ###### examples
 ```python
@@ -258,9 +265,9 @@ easyqa.create_organization_role(organization_id=1, user_id=12, role='user')
 ##### Create project role
 ###### fields
 [required]
-- organization_id - Organization id
-- user_id - User id
-- role - Role (available: 'developer', 'tester', 'viewer', 'project_manager')
+> - organization_id - Organization id
+> - user_id - User id
+> - role - Role (available: 'developer', 'tester', 'viewer', 'project_manager')
 
 ###### examples
 ```python
@@ -271,8 +278,8 @@ easyqa.create_project_role(organization_id=1, user_id=12, role='tester')
 ##### Update project role
 ###### fields
 [required]
-- id - role id
-- role - Role (available: 'developer', 'tester', 'viewer', 'project_manager')
+> - id - role id
+> - role - Role (available: 'developer', 'tester', 'viewer', 'project_manager')
 
 ###### examples
 ```python
@@ -283,7 +290,7 @@ easyqa.update_project_role(id=2, role='tester')
 ##### Delete project role
 ###### fields
 [required]
-- id - role id
+> - id - role id
 
 ###### examples
 ```python
