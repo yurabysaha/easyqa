@@ -20,6 +20,10 @@ easyqa = Session('email', 'password', 'project_token')
 easyqa.get_issues()
 ```
 ##### Get issue by id
+###### fields
+[required]
+- issue_id - Issue ID
+
 ```python
 # get one issue by id
 easyqa.get_issue_by_id(issue_id)
@@ -27,15 +31,8 @@ easyqa.get_issue_by_id(issue_id)
 # get one issue by id in project
 easyqa.get_issue_by_id_in_project(issue_id)
 ```
-###### fields
-[required]
-- issue_id - Issue ID
 
 ##### Create issue
-```python
-# create one issue
-easyqa.create_issue(summary, **kwargs)
-```
 ###### fields
 [required]
 - summary - Issue summary
@@ -49,16 +46,18 @@ easyqa.create_issue(summary, **kwargs)
 - assigner_id - Issue assigner ID
 - test.jpg - Name your upload image. Data type must be "jpg"
 - test.mp4 - Name your upload video. Data type must be "mp4"
+
+```python
+# create one issue
+easyqa.create_issue(summary, **kwargs)
+```
+
 ###### examples
 ```python
 # create one issue with optional fields
 easyqa.create_issue(summary='Test', description='test description')
 ```
 ##### Update issue
-```python
-# Update issue by id
-easyqa.update_issue_by_id(issue_id, summary, **kwargs)
-```
 ###### fields
 [required]
 - issue_id - Issue ID
@@ -74,6 +73,12 @@ easyqa.update_issue_by_id(issue_id, summary, **kwargs)
 - status_id - Status ID
 - test.jpg - Name your upload image. Data type must be "jpg"
 - test.mp4 - Name your upload video. Data type must be "mp4"
+
+```python
+# Update issue by id
+easyqa.update_issue_by_id(issue_id, summary, **kwargs)
+```
+
 ###### examples
 ```python
 # update one issue with optional fields
@@ -83,9 +88,7 @@ easyqa.update_issue_by_id(issue_id=2, summary='Test', description='test descript
 easyqa.update_issue_by_id_in_project(issue_id=2, summary='Test', description='test description')
 ```
 
-
 ##### Delete issue
-
 ###### fields
 [required]
 - issue_id - Issue ID
@@ -96,5 +99,5 @@ easyqa.update_issue_by_id_in_project(issue_id=2, summary='Test', description='te
 easyqa.delete_issue_by_id(issue_id=2)
 
 # delete one issue by id in project
-easyqa.delete_issue_by_id_in_project(issue_id=2)
+easyqa.delete_issue_by_id_in_project(issue_id=3)
 ```

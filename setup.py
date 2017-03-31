@@ -10,4 +10,5 @@ setup(
   download_url = 'https://github.com/yurabysaha/easyqa/archive/0.1.tar.gz', # I'll explain this in a second
   keywords = ['testing', 'easyqa', 'automation testing'], # arbitrary keywords
   classifiers = [],
+  requires = ['requests']
 )
