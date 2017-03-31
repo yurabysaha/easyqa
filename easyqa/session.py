@@ -280,3 +280,53 @@ class Session(object):
             }
         )
         return self._req('DELETE', delete_status_url, data)
+
+        # ------------------------- Test Modules --------------------------
+    def get_test_modules(self, test_plan_id):
+        get_test_modules_url = self.API_URL + "/api/v1/test_plans/" + test_plan_id + "/test_modules?token=" + self.token + "&auth_token=" + self.auth_token
+        return self._req('GET', get_test_modules_url)
+
+    def show_test_module(self, id):
+        show_test_module_url = self.API_URL + "/api/v1/test_modules/" + str(
+            id) + "?token=" + self.token + "&auth_token=" + self.auth_token
+        return self._req('GET', show_test_module_url)
+
+    def create_test_module(self, test_plan_id, title, description='', parent_id=None):
+        create_test_module_url = self.API_URL + '/api/v1/test_plans/' + test_plan_id + "/test_modules"
+        data = json.dumps(
+            {
+                "token": self.token,
+                "test_module": {
+                    "title": title,
+                    "description": description,
+                    "parent_id": parent_id
+                },
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('POST', create_test_module_url, data)
+
+    def update_test_module(self, id, title, description='', parent_id=None):
+        update_test_module_url = self.API_URL + '/api/v1/test_modules/' + str(id)
+        data = json.dumps(
+            {
+                "token": self.token,
+                "test_module": {
+                    "title": title,
+                    "description": description,
+                    "parent_id": parent_id
+                },
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('PUT', update_test_module_url, data)
+
+    def delete_test_module(self, id):
+        delete_test_module_url = self.API_URL + '/api/v1/test_modules/' + str(id)
+        data = json.dumps(
+            {
+                "token": self.token,
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('DELETE', delete_test_module_url, data)
