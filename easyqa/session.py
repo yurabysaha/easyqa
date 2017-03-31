@@ -98,7 +98,6 @@ class Session(object):
         })
         return self._req('DELETE', delete_issue_url, data)
 
-
         # ------------------------- Organization --------------------------
 
     def get_organizations(self):
@@ -138,8 +137,6 @@ class Session(object):
         })
         return self._req('DELETE', delete_organization_url, data)
 
-
-
         # ------------------------- Projects --------------------------
 
     def get_projects(self):
@@ -177,7 +174,6 @@ class Session(object):
             "auth_token": self.auth_token
         })
         return self._req('DELETE', delete_project_url, data)
-
 
         # ------------------------- Roles --------------------------
 
@@ -234,6 +230,51 @@ class Session(object):
         })
         return self._req('DELETE', delete_role_url, data)
 
+        # ------------------------- Test Cases --------------------------
+
+    def get_test_cases(self, test_module_id):
+        get_test_cases_url = self.API_URL + "/api/v1/test_modules/" + str(test_module_id) + "/test_cases?token=" + self.token +\
+                        "&auth_token=" + self.auth_token
+        return self._req('GET', get_test_cases_url)
+
+    def show_test_case(self, id):
+        show_test_case_url = self.API_URL + "/api/v1/test_cases/" + str(id) + "?token=" + self.token + "&auth_token=" + self.auth_token
+        return self._req('GET', show_test_case_url)
+
+    def create_test_case(self, test_module_id, title,  **kwargs):
+        create_test_case_url = self.API_URL + "/api/v1/test_modules/" + str(test_module_id) + "/test_cases"
+        required ={
+                "token": self.token,
+                "test_case": {
+                    "title": title
+                },
+                "auth_token": self.auth_token
+            }
+        required["test_case"].update(kwargs)
+        data = json.dumps(required)
+        return self._req('POST', create_test_case_url, data)
+
+    def update_test_case(self, test_module_id, title, **kwargs):
+        update_test_case_url = self.API_URL + "/api/v1/test_cases/" + str(test_module_id)
+        required = {
+            "token": self.token,
+            "test_case": {
+                "title": title
+            },
+            "auth_token": self.auth_token
+        }
+        required["test_case"].update(kwargs)
+        data = json.dumps(required)
+        return self._req('PUT', update_test_case_url, data)
+
+    def delete_test_case(self, id):
+        delete_test_case_url = self.API_URL + '/api/v1/test_cases/' + str(id)
+        data = json.dumps({
+            "token": self.token,
+            "auth_token": self.auth_token
+        })
+        return self._req('DELETE', delete_test_case_url, data)
+
         # ------------------------- Statuses --------------------------
 
     def get_statuses(self):
@@ -282,6 +323,7 @@ class Session(object):
         return self._req('DELETE', delete_status_url, data)
 
         # ------------------------- Test Modules --------------------------
+
     def get_test_modules(self, test_plan_id):
         get_test_modules_url = self.API_URL + "/api/v1/test_plans/" + test_plan_id + "/test_modules?token=" + self.token + "&auth_token=" + self.auth_token
         return self._req('GET', get_test_modules_url)
