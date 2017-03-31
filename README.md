@@ -32,7 +32,7 @@ easyqa.get_issue_by_id(issue_id)
 easyqa.get_issue_by_id_in_project(issue_id)
 ```
 
-##### Create issue
+#### Create issue
 ###### fields
 [required]
 - summary - Issue summary
@@ -57,7 +57,7 @@ easyqa.create_issue(summary, **kwargs)
 # create one issue with optional fields
 easyqa.create_issue(summary='Test', description='test description')
 ```
-##### Update issue
+#### Update issue
 ###### fields
 [required]
 - issue_id - Issue ID
@@ -88,7 +88,7 @@ easyqa.update_issue_by_id(issue_id=2, summary='Test', description='test descript
 easyqa.update_issue_by_id_in_project(issue_id=2, summary='Test', description='test description')
 ```
 
-##### Delete issue
+#### Delete issue
 ###### fields
 [required]
 - issue_id - Issue ID
@@ -100,4 +100,65 @@ easyqa.delete_issue_by_id(issue_id=2)
 
 # delete one issue by id in project
 easyqa.delete_issue_by_id_in_project(issue_id=3)
+```
+
+### Organization
+#### Get Organization
+##### Get organizations
+```python
+# get all your organizations
+easyqa.get_organizations()
+```
+##### Get organization by id
+###### fields
+[required]
+- id - Organization ID
+
+###### examples
+```python
+# get one organization by id
+easyqa.show_organization(id)
+```
+
+#### Create organization
+###### fields
+[required]
+- title - Organization title
+
+[optional]
+- description - Organization description
+
+###### examples
+```python
+# create one organization 
+easyqa.create_organization(title='Test')
+
+# create one organization with optional fields
+easyqa.create_issue(title='Test', description='test description')
+```
+
+#### Update organization
+###### fields
+[required]
+- id - Organization id
+
+[optional]
+- title - Organization title
+- description - Organization description
+
+###### examples
+```python
+# update one organization 
+easyqa.update_organization(id=1, title='Test', description='test description')
+```
+
+#### Delete organization
+###### fields
+[required]
+- id - Organization id
+
+###### examples
+```python
+# delete one organization
+easyqa.delete_organization(id=2)
 ```
