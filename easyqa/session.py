@@ -27,10 +27,12 @@ class Session(object):
         response = json.loads(response.content)
         self.auth_token = response['auth_token']
 
-    def _req(self, method, url, data=None):
+    def _req(self, method, url, data=None, files=None):
         if method == 'POST' or method == 'PUT' or method == 'DELETE':
-            return self.s.request(method=method, url=url, data=data, headers=self.headers)
-
+            if not files :
+                return self.s.request(method=method, url=url, data=data, headers=self.headers, files=files)
+            else:
+                return self.s.request(method=method, url=url, data=data, files=files)
         return self.s.request(method=method, url=url)
 
         # ------------------------- Issues --------------------------
@@ -97,6 +99,25 @@ class Session(object):
             "auth_token": self.auth_token
         })
         return self._req('DELETE', delete_issue_url, data)
+
+        # ------------------------- Attachment --------------------------
+
+    def create_issue_attachment(self, issue_id, attach_file):
+        create_issue_attachment_url = self.API_URL + '/api/v1/issues/' + str(issue_id) + '/attachments'
+        required = {
+            "token": self.token,
+            "auth_token": self.auth_token
+        }
+        upload_file = [('attachment', (attach_file, open(attach_file, 'rb')))]
+        return self._req('POST', create_issue_attachment_url,data=required,files=upload_file)
+
+    def delete_attachment(self, attachment_id):
+        delete_attachment_url = self.API_URL + '/api/v1/attachments/' + str(attachment_id)
+        data = json.dumps({
+            "token": self.token,
+            "auth_token": self.auth_token
+        })
+        return self._req('DELETE', delete_attachment_url, data)
 
         # ------------------------- Organization --------------------------
 
@@ -254,7 +275,7 @@ class Session(object):
         data = json.dumps(required)
         return self._req('POST', create_test_case_url, data)
 
-    def update_test_case(self, test_case_id, title, **kwargs):
+    def update_test_case(self, test_module_id, title, **kwargs):
         update_test_case_url = self.API_URL + "/api/v1/test_cases/" + str(test_module_id)
         required = {
             "token": self.token,
