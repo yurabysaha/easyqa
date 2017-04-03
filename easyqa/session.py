@@ -254,7 +254,7 @@ class Session(object):
         data = json.dumps(required)
         return self._req('POST', create_test_case_url, data)
 
-    def update_test_case(self, test_module_id, title, **kwargs):
+    def update_test_case(self, test_case_id, title, **kwargs):
         update_test_case_url = self.API_URL + "/api/v1/test_cases/" + str(test_module_id)
         required = {
             "token": self.token,

@@ -297,3 +297,198 @@ easyqa.update_project_role(id=2, role='tester')
 # delete project role
 easyqa.delete_role(id=2)
 ```
+
+### Test cases
+#### Get Test cases
+###### fields
+[required]
+> - test_module_id - Test module ID
+
+###### examples
+```python
+# get all test cases from module
+easyqa.get_test_cases(test_module_id=1)
+```
+
+##### Get test case by id
+###### fields
+[required]
+> - id - Test case ID
+
+###### examples
+```python
+# get one test case by id
+easyqa.show_test_case(id=1)
+```
+
+##### Create test case
+###### fields
+[required]
+> - test_module_id - Test module ID
+> - title - Title of the test case
+
+[optional]
+> - test_case - Test case attributes
+> - pre_steps - Pre steps to test case
+> - steps - Steps to test case
+> - expected_result - Expected test case result
+> - case_type - Type of test case
+
+###### examples
+```python
+# create test case
+easyqa.create_test_case(test_module_id=1, title='test', steps='1. Sit in a Vulture Droid\n 2. Go to Lothal')
+```
+
+##### Update test case
+###### fields
+[required]
+> - id - Test case ID
+> - title - Title of the test case
+
+[optional]
+> - test_case - Test case attributes
+> - pre_steps - Pre steps to test case
+> - steps - Steps to test case
+> - expected_result - Expected test case result
+> - case_type - Type of test case
+
+###### examples
+```python
+# update test case
+easyqa.update_test_case(test_module_id=1, title='test', pre_steps='1. Sit in a Vulture Droid\n 2. Go to Lothal')
+```
+
+##### Delete test case
+###### fields
+[required]
+> - id - test case id
+
+###### examples
+```python
+# delete test case
+easyqa.delete_test_case(id=2)
+```
+
+### Statuses
+#### Get Statuses
+###### fields
+
+###### examples
+```python
+# get all statuses
+easyqa.get_statuses()
+```
+
+##### Get status by id
+###### fields
+[required]
+> - id - Status id
+
+###### examples
+```python
+# get one status by id
+easyqa.show_statuses(id=1)
+```
+
+##### Create status
+###### fields
+[required]
+> - name - Status name
+
+###### examples
+```python
+# create status
+easyqa.create_status(name='synthesizing')
+```
+
+##### Update status
+###### fields
+[required]
+> - name - Status name
+> - id - Status id
+
+###### examples
+```python
+# update status
+easyqa.update_status(id=4, name='synthesizing')
+```
+
+##### Delete status
+###### fields
+[required]
+> - id - Status id
+
+###### examples
+```python
+# delete status
+easyqa.delete_status(id=2)
+```
+
+### Test Modules
+#### Get Test Modules
+###### fields
+[required]
+> - test_plan_id - ID of test plan
+
+###### examples
+```python
+# get all test module from test plan
+easyqa.get_test_modules(test_plan_id=1)
+```
+
+##### Get test module by id
+###### fields
+[required]
+> - id - Test module id
+
+###### examples
+```python
+# get one test module by id
+easyqa.show_test_module(id=1)
+```
+
+##### Create test module
+###### fields
+[required]
+> - test_plan_id - ID of test plan
+> - title - Title of the test module
+
+[optional]
+> - description - Description of the test module
+> - test_module - Test module attributes
+> - parent_id - Id of parent test module (If you give this parameter, this test module will be nested in parent test module)
+
+###### examples
+```python
+# create test module
+easyqa.create_test_module(test_plan_id=1, title='test', description='Super module')
+```
+
+##### Update test module
+###### fields
+[required]
+> - id - Test module id
+> - title - Title of the test module
+
+[optional]
+> - description - Description of the test module
+> - test_module - Test module attributes
+> - parent_id - Id of parent test module (If you give this parameter, this test module will be nested in parent test module)
+
+###### examples
+```python
+# update test module
+easyqa.update_test_module(test_plan_id=1, title='test', description='Super module2')
+```
+
+##### Delete test module
+###### fields
+[required]
+> - id - test module
+
+###### examples
+```python
+# delete test module
+easyqa.delete_test_module(id=2)
+```
