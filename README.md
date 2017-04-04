@@ -598,7 +598,7 @@ easyqa.show_test_object(id=3)
 ###### examples
 ```python
 # create test object link
-easyqa.create_test_object_link('link'='http://champlin.info')
+easyqa.create_test_object_link(link='http://champlin.info')
 ```
 
 ##### Delete test object
@@ -610,4 +610,131 @@ easyqa.create_test_object_link('link'='http://champlin.info')
 ```python
 # delete test object
 easyqa.delete_test_object(id=2)
+```
+
+### Test Run
+#### Get Test Runs
+###### examples
+```python
+# get all test runs from project
+easyqa.get_test_runs()
+```
+
+#### Get Test run by id
+###### fields
+[required]
+> - test_run_id - test run id
+
+###### examples
+```python
+# get Test run by id from project
+easyqa.show_test_run(test_run_id=3)
+```
+
+##### Create test run
+###### fields
+[required]
+> - title - Title of the test run
+
+[optional]
+> - description - Description of the test run
+> - test_run_results_attributes - Attributes of test cases. If you want include they to this test run
+> - ...
+
+###### examples
+```python
+# create test run
+easyqa.create_test_run(title='Run')
+```
+
+##### Update test run
+###### fields
+[required]
+> - id - Test run id
+> - title - Title of the test run
+
+[optional]
+> - description - Description of the test run
+> - test_run_results_attributes - Attributes of test cases. If you want include they to this test run
+> - ...
+
+###### examples
+```python
+# update test run
+easyqa.update_test_run(title='Run')
+```
+
+##### Delete test run
+###### fields
+[required]
+> - id - Test run id
+
+###### examples
+```python
+# delete test run
+easyqa.delete_test_run(id=2)
+```
+
+### Test Run result
+#### Get Test Run result from test run
+###### fields
+[required]
+> - test_run_id - test run id
+
+###### examples
+```python
+# get all test run result from test run
+easyqa.get_test_run_results(test_run_id=12)
+```
+
+#### Get Test run result by id
+###### fields
+[required]
+> - id - test run result id
+
+###### examples
+```python
+# get Test run result by id from test run
+easyqa.show_test_run_result(test_run_id=3)
+```
+
+##### Create test run result
+###### fields
+[required]
+> - test_run_id - ID of test run
+> - test_case_id - Test case id
+
+[optional]
+> - result_status - Status of test run results, might be in "pass", "block", "untested" and "fail"
+
+###### examples
+```python
+# create test run result
+easyqa.create_test_run_result(test_run_id=2, test_case_id=43)
+```
+
+##### Update test run result
+###### fields
+[required]
+> - test_run_results_id - Test run result id
+
+[optional]
+> - result_status - Status of test run results, might be in "pass", "block", "untested" and "fail"
+> - test_case_id - Test case id
+
+###### examples
+```python
+# update test run result
+easyqa.update_test_run_result(test_run_results_id=21, test_case_id=12)
+```
+
+##### Delete test run results
+###### fields
+[required]
+> - id - Test run result id
+
+###### examples
+```python
+# delete test run results
+easyqa.delete_test_run_result(id=2)
 ```
