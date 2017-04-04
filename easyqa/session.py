@@ -405,6 +405,54 @@ class Session(object):
         )
         return self._req('DELETE', delete_test_module_url, data)
 
+        # ------------------------- Test Plan --------------------------
+
+    def get_test_plans(self):
+        get_test_modules_url = self.API_URL + "/api/v1/test_plans" + "?token=" + self.token + "&auth_token=" + self.auth_token
+        return self._req('GET', get_test_modules_url)
+
+    def show_test_plan(self, id):
+        get_test_modules_url = self.API_URL + "/api/v1/test_plans/" + str(id) + "?token=" + self.token + "&auth_token=" + self.auth_token
+        return self._req('GET', get_test_modules_url)
+
+    def create_test_plans(self, title, description=''):
+        create_test_plans_url = self.API_URL + "/api/v1/test_plans"
+        data = json.dumps(
+            {
+                "token": self.token,
+                "test_plan": {
+                    "title": title,
+                    "description": description,
+                },
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('POST', create_test_plans_url, data)
+
+    def update_test_plans(self, id, title, description=''):
+        create_test_plans_url = self.API_URL + "/api/v1/test_plans/" + str(id)
+        data = json.dumps(
+            {
+                "token": self.token,
+                "test_plan": {
+                    "title": title,
+                    "description": description,
+                },
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('PUT', create_test_plans_url, data)
+
+    def delete_test_plan(self, id):
+        delete_test_plan_url = self.API_URL + '/api/v1/test_plans/' + str(id)
+        data = json.dumps(
+            {
+                "token": self.token,
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('DELETE', delete_test_plan_url, data)
+
         # ------------------------- Test Objects --------------------------
 
     def get_test_objects(self):
