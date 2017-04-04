@@ -60,6 +60,12 @@ class Session(object):
         }
         required.update(kwargs)
         data = json.dumps(required)
+        if 'file' in kwargs:
+            issue = json.loads(self._req('POST', create_issue_url, data).content)
+            attach = json.loads(self.create_issue_attachment(issue['id'], kwargs['file']).content)
+            issue['attachments'].append(attach)
+            return issue
+
         return self._req('POST', create_issue_url, data)
 
     def update_issue_by_id(self, issue_id, summary, **kwargs):
@@ -71,6 +77,11 @@ class Session(object):
         }
         required.update(kwargs)
         data = json.dumps(required)
+        if 'file' in kwargs:
+            issue = json.loads(self._req('POST', update_issue_url, data).content)
+            attach = json.loads(self.create_issue_attachment(issue['id'], kwargs['file']).content)
+            issue['attachments'].append(attach)
+            return issue
         return self._req('PUT', update_issue_url, data)
 
     def update_issue_by_id_in_project(self, issue_id, summary, **kwargs):

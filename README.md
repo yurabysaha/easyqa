@@ -47,12 +47,13 @@ easyqa.get_issue_by_id_in_project(issue_id)
 [optional]
 > - test_object_id - ID test object on site
 > - description - Issue description
-> - issue_type - Type of issue
-> - priority - Issue priority
+> - issue_type - Type of issue ('bug', 'documentation', 'task', 'feature', 'usability_problem', 'crash')
+> - priority - Issue priority ('low', 'medium', 'high', 'critical') 
 > - severity - Issue severity
 > - assigner_id - Issue assigner ID
 > - test.jpg - Name your upload image. Data type must be "jpg"
 > - test.mp4 - Name your upload video. Data type must be "mp4"
+> - file - File which will be attached to issue
 
 ```python
 # create one issue
@@ -73,13 +74,14 @@ easyqa.create_issue(summary='Test', description='test description')
 [optional]
 > - test_object_id - ID test object on site
 > - description - Issue description
-> - issue_type - Type of issue
-> - priority - Issue priority
+> - issue_type - Type of issue ('bug', 'documentation', 'task', 'feature', 'usability_problem', 'crash')
+> - priority - Issue priority ('low', 'medium', 'high', 'critical') 
 > - severity - Issue severity
 > - assigner_id - Issue assigner ID
 > - status_id - Status ID
 > - test.jpg - Name your upload image. Data type must be "jpg"
 > - test.mp4 - Name your upload video. Data type must be "mp4"
+> - file - File which will be attached to issue
 
 ```python
 # Update issue by id
@@ -107,6 +109,29 @@ easyqa.delete_issue_by_id(issue_id=2)
 
 # delete one issue by id in project
 easyqa.delete_issue_by_id_in_project(issue_id=3)
+```
+### Attachment
+#### Create Attachment
+###### fields
+[required]
+> - issue_id - Issue ID
+> - attach_file - File
+
+###### examples
+```python
+# create attachment
+easyqa.create_issue_attachment(issue_id=1, attach_file'text.txt')
+```
+
+#### Delete Attachment
+###### fields
+[required]
+> - attachment_id - Attachment ID
+
+###### examples
+```python
+# delete attachment
+easyqa.delete_attachment(attachment_id=12)
 ```
 
 ### Organization
