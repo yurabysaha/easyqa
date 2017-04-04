@@ -404,3 +404,35 @@ class Session(object):
             }
         )
         return self._req('DELETE', delete_test_module_url, data)
+
+        # ------------------------- Test Objects --------------------------
+
+    def get_test_objects(self):
+        get_test_objects_url = self.API_URL + "/api/v1/test_objects?token=" + self.token + "&auth_token=" + self.auth_token
+        return self._req('GET', get_test_objects_url)
+
+    def show_test_object(self, id):
+        show_test_object_url = self.API_URL + "/api/v1/test_objects/" + str(
+            id) + "?token=" + self.token + "&auth_token=" + self.auth_token
+        return self._req('GET', show_test_object_url)
+
+    def create_test_object_link(self, link):
+        create_test_object_url = self.API_URL + '/api/v1/test_objects'
+        data = json.dumps(
+            {
+                "token": self.token,
+                "link": link,
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('POST', create_test_object_url, data)
+
+    def delete_test_object(self, id):
+        delete_test_object_url = self.API_URL + '/api/v1/test_objects/' + str(id)
+        data = json.dumps(
+            {
+                "token": self.token,
+                "auth_token": self.auth_token
+            }
+        )
+        return self._req('DELETE', delete_test_object_url, data)
