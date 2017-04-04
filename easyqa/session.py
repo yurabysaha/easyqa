@@ -475,6 +475,16 @@ class Session(object):
         )
         return self._req('POST', create_test_object_url, data)
 
+    def create_test_object_file(self, build_file):
+        create_test_object_file_url = self.API_URL + '/api/v1/test_objects'
+        data = {
+                "token": self.token,
+                "auth_token": self.auth_token
+            }
+
+        qwerty = {"file": ('build.apk', open(build_file, 'rb'), 'application/vnd.android.package-archive')}
+        return self.s.request('POST', url=create_test_object_file_url, data=data, files=qwerty)
+
     def delete_test_object(self, id):
         delete_test_object_url = self.API_URL + '/api/v1/test_objects/' + str(id)
         data = json.dumps(
