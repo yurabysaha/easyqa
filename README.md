@@ -601,6 +601,17 @@ easyqa.show_test_object(id=3)
 easyqa.create_test_object_link(link='http://champlin.info')
 ```
 
+##### Create test object file
+###### fields
+[required]
+> - file - Path to ipa or apk file
+
+###### examples
+```python
+# create test object link
+    easyqa.create_test_object_file(file='one.apk')
+```
+
 ##### Delete test object
 ###### fields
 [required]
