@@ -415,7 +415,7 @@ class Session(object):
         get_test_modules_url = self.API_URL + "/api/v1/test_plans/" + str(id) + "?token=" + self.token + "&auth_token=" + self.auth_token
         return self._req('GET', get_test_modules_url)
 
-    def create_test_plans(self, title, description=''):
+    def create_test_plan(self, title, description=''):
         create_test_plans_url = self.API_URL + "/api/v1/test_plans"
         data = json.dumps(
             {
@@ -429,7 +429,7 @@ class Session(object):
         )
         return self._req('POST', create_test_plans_url, data)
 
-    def update_test_plans(self, id, title, description=''):
+    def update_test_plan(self, id, title, description=''):
         create_test_plans_url = self.API_URL + "/api/v1/test_plans/" + str(id)
         data = json.dumps(
             {

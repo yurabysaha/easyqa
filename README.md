@@ -49,10 +49,7 @@ easyqa.get_issue_by_id_in_project(issue_id)
 > - description - Issue description
 > - issue_type - Type of issue ('bug', 'documentation', 'task', 'feature', 'usability_problem', 'crash')
 > - priority - Issue priority ('low', 'medium', 'high', 'critical') 
-> - severity - Issue severity
 > - assigner_id - Issue assigner ID
-> - test.jpg - Name your upload image. Data type must be "jpg"
-> - test.mp4 - Name your upload video. Data type must be "mp4"
 > - file - File which will be attached to issue
 
 ```python
@@ -76,11 +73,8 @@ easyqa.create_issue(summary='Test', description='test description')
 > - description - Issue description
 > - issue_type - Type of issue ('bug', 'documentation', 'task', 'feature', 'usability_problem', 'crash')
 > - priority - Issue priority ('low', 'medium', 'high', 'critical') 
-> - severity - Issue severity
 > - assigner_id - Issue assigner ID
 > - status_id - Status ID
-> - test.jpg - Name your upload image. Data type must be "jpg"
-> - test.mp4 - Name your upload video. Data type must be "mp4"
 > - file - File which will be attached to issue
 
 ```python
@@ -510,10 +504,110 @@ easyqa.update_test_module(test_plan_id=1, title='test', description='Super modul
 ##### Delete test module
 ###### fields
 [required]
-> - id - test module
+> - id - test module id
 
 ###### examples
 ```python
 # delete test module
 easyqa.delete_test_module(id=2)
+```
+
+### Test Plan
+#### Get Test Plan
+###### examples
+```python
+# get all test plans from project
+easyqa.get_test_plans()
+```
+
+#### Get Test Plan by id
+###### fields
+[required]
+> - id - test_plan id
+
+###### examples
+```python
+# get Test Plan by id from project
+easyqa.show_test_plan(id=3)
+```
+
+##### Create test plan
+###### fields
+[required]
+> - title - Title of the test plan
+
+[optional]
+> - description - Description of the test plan
+
+###### examples
+```python
+# create test plan
+easyqa.create_test_plan(title='test', description='Super test plan')
+```
+
+##### Update test plan
+###### fields
+[required]
+> - id - Test plan id
+> - title - Title of the test plan
+
+[optional]
+> - description - Description of the test plan
+
+###### examples
+```python
+# update test plan
+easyqa.update_test_plan(id=2, title='test', description='Super test plan')
+```
+
+##### Delete test plan
+###### fields
+[required]
+> - id - Test plan id
+
+###### examples
+```python
+# delete test plan
+easyqa.delete_test_plan(id=2)
+```
+
+### Test Object
+#### Get Test Object
+###### examples
+```python
+# get all test objects from project
+easyqa.get_test_objects()
+```
+
+#### Get Test Object by id
+###### fields
+[required]
+> - id - test object id
+
+###### examples
+```python
+# get Test Object by id from project
+easyqa.show_test_object(id=3)
+```
+
+##### Create test object link
+###### fields
+[required]
+> - link - Your link to site
+
+###### examples
+```python
+# create test object link
+easyqa.create_test_object_link('link'='http://champlin.info')
+```
+
+##### Delete test object
+###### fields
+[required]
+> - id - Test object id
+
+###### examples
+```python
+# delete test object
+easyqa.delete_test_object(id=2)
 ```
