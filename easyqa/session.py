@@ -548,23 +548,23 @@ class Session(object):
         get_test_run_results_url = self.base_url + "/api/v1/test_runs/" + str(test_run_id) + "/test_run_results" + "?token=" + self.token + "&auth_token=" + self.auth_token
         return self._req('GET', get_test_run_results_url)
 
-    def show_test_run_result(self, id):
-        get_test_run_result_url = self.base_url + "/api/v1/test_run_results/" + str(id) + "?token=" + self.token + "&auth_token=" + self.auth_token
+    def show_test_run_result(self, test_run_result_id):
+        get_test_run_result_url = self.base_url + "/api/v1/test_run_results/" + str(test_run_result_id) + "?token=" + self.token + "&auth_token=" + self.auth_token
         return self._req('GET', get_test_run_result_url)
 
-    def create_test_run_result(self, test_run_id, test_case_id, result_status=None):
-        create_test_run_result_url = self.base_url + '/api/v1/test_runs/' + str(test_run_id) + '/test_run_results'
-        data = json.dumps(
-            {
-                "token": self.token,
-                "test_run_result": {
-                    "result_status": result_status,
-                    "test_case_id": test_case_id
-                },
-                "auth_token": self.auth_token
-            }
-        )
-        return self._req('POST', create_test_run_result_url, data)
+    # def create_test_run_result(self, test_run_id, test_case_id, result_status=None):
+    #     create_test_run_result_url = self.base_url + '/api/v1/test_runs/' + str(test_run_id) + '/test_run_results'
+    #     data = json.dumps(
+    #         {
+    #             "token": self.token,
+    #             "test_run_result": {
+    #                 "result_status": result_status,
+    #                 "test_case_id": test_case_id
+    #             },
+    #             "auth_token": self.auth_token
+    #         }
+    #     )
+    #     return self._req('POST', create_test_run_result_url, data)
 
     def update_test_run_result(self, test_run_results_id, test_case_id=None, result_status=None):
         update_test_run_result_url = self.base_url + '/api/v1/test_run_results/' + str(test_run_results_id)

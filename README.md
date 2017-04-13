@@ -702,27 +702,12 @@ easyqa.get_test_run_results(test_run_id=12)
 #### Get Test run result by id
 ###### fields
 [required]
-> - id - test run result id
+> - test_run_result_id - test run result id
 
 ###### examples
 ```python
 # get Test run result by id from test run
-easyqa.show_test_run_result(test_run_id=3)
-```
-
-##### Create test run result
-###### fields
-[required]
-> - test_run_id - ID of test run
-> - test_case_id - Test case id
-
-[optional]
-> - result_status - Status of test run results, might be in "pass", "block", "untested" and "fail"
-
-###### examples
-```python
-# create test run result
-easyqa.create_test_run_result(test_run_id=2, test_case_id=43)
+easyqa.show_test_run_result(test_run_result_id=3)
 ```
 
 ##### Update test run result
