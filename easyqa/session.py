@@ -30,7 +30,7 @@ class Session(object):
 
     def _req(self, method, url, data=None, files=None):
         if method == 'POST' or method == 'PUT' or method == 'DELETE':
-            if not files :
+            if not files:
                 return self.s.request(method=method, url=url, data=data, headers=self.headers, files=files)
             else:
                 return self.s.request(method=method, url=url, data=data, files=files)
@@ -121,7 +121,7 @@ class Session(object):
             "auth_token": self.auth_token
         }
         upload_file = [('attachment', (attach_file, open(attach_file, 'rb')))]
-        return self._req('POST', create_issue_attachment_url,data=required,files=upload_file)
+        return self._req('POST', create_issue_attachment_url, data=required, files=upload_file)
 
     def delete_attachment(self, attachment_id):
         delete_attachment_url = self.base_url + '/api/v1/attachments/' + str(attachment_id)
