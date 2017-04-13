@@ -9,13 +9,14 @@ $ pip install easyqa
 ### Authenticating
 ###### fields
 [required]
+> - base_url - Your server url (default is easyqa cloud(https://app.geteasyqa.com))
 > - email - Your email
 > - password - Your password
 > - project_token - Your project token. [How find project token](https://geteasyqa.com/sdk/android)
 
 ```python
 from easyqa.session import Session
-easyqa = Session('email', 'password', 'project_token')
+easyqa = Session(login='<your email>', password='<your password>', base_url='<your server>', project_token='<your project token>')
 ```
 # Methods
 
