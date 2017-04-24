@@ -9,6 +9,5 @@ setup(
   url = 'https://github.com/thinkmobiles/easyqa_library_python', # use the URL to the github repo
   download_url = 'https://github.com/thinkmobiles/easyqa_library_python/archive/0.1.tar.gz', # I'll explain this in a second
   keywords = ['testing', 'easyqa', 'automation testing'], # arbitrary keywords
-  classifiers = [],
-  requires = ['requests']
+  classifiers = []
 )
