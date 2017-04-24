@@ -25,6 +25,8 @@ class Session(object):
             }
         })
         response = self.s.post(sign_in_url, data=userdata, headers=self.headers)
+        if response.status_code != 200:
+            raise Exception(response.content)
         response = json.loads(response.content)
         self.auth_token = response['auth_token']
 
